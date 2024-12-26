@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const navigation = document.getElementById('navigation');
 
     // Fetch the markdown file
-    const response = await fetch('content.md');
+    const response = await fetch('summary.md');
     const markdownContent = await response.text();
 
     // Convert Markdown to HTML
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Create navigation links
     const headers = contentDiv.querySelectorAll('h2, h3');
     let currentList = navigation;
+    let parentItem = null; // Track the current parent (main header)
 
     headers.forEach(header => {
         const link = document.createElement('a');
@@ -22,14 +23,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         listItem.appendChild(link);
 
         if (header.tagName === 'H2') {
-            currentList = navigation; // Reset to top-level list for H2
-            currentList.appendChild(listItem);
-        } else if (header.tagName === 'H3') {
-            // Find or create a sublist for H3
-            let sublist = currentList.querySelector('ul:last-child');
+            // Add new chapter header
+            navigation.appendChild(listItem);
+            parentItem = listItem; // Update parent to the current header
+        } else if (header.tagName === 'H3' && parentItem) {
+            // Add subheading under the current chapter
+            let sublist = parentItem.querySelector('ul');
             if (!sublist) {
                 sublist = document.createElement('ul');
-                currentList.lastChild?.appendChild(sublist);
+                parentItem.appendChild(sublist);
             }
             sublist.appendChild(listItem);
         }
