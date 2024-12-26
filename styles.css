@@ -13,7 +13,7 @@ body {
 }
 
 #sidebar {
-    width: 250px;
+    width: 300px; /* Increased width for more space */
     background-color: #f4f4f4;
     padding: 15px;
     overflow-y: auto;
@@ -31,18 +31,37 @@ body {
 }
 
 #sidebar li {
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 #sidebar a {
     text-decoration: none;
     color: #007BFF;
     font-weight: bold;
-    cursor: pointer;
+    display: block;
 }
 
 #sidebar a:hover {
     text-decoration: underline;
+}
+
+/* Styling for main headers (h2) */
+#sidebar ul > li > a {
+    font-size: 1.2em;
+    padding-left: 10px; /* Minimal indentation */
+}
+
+/* Styling for subheaders (h3) */
+#sidebar ul > li ul > li > a {
+    font-size: 1em;
+    padding-left: 30px; /* More indentation for hierarchy */
+    font-weight: normal; /* Differentiating from main headers */
+    color: #0056b3;
+}
+
+#sidebar ul > li ul > li > a:hover {
+    text-decoration: underline;
+    color: #00376b;
 }
 
 #content {

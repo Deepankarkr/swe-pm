@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const navigation = document.getElementById('navigation');
 
     // Fetch the markdown file
-    const response = await fetch('summary.md');
+    const response = await fetch('content.md');
     const markdownContent = await response.text();
 
     // Convert Markdown to HTML
@@ -11,15 +11,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Create navigation links
     const headers = contentDiv.querySelectorAll('h2, h3');
+    let currentList = navigation;
+
     headers.forEach(header => {
         const link = document.createElement('a');
         link.textContent = header.textContent;
         link.href = `#${header.id || header.textContent.replace(/\s+/g, '-').toLowerCase()}`;
+
         const listItem = document.createElement('li');
         listItem.appendChild(link);
-        navigation.appendChild(listItem);
 
-        // Add IDs to headers
+        if (header.tagName === 'H2') {
+            currentList = navigation; // Reset to top-level list for H2
+            currentList.appendChild(listItem);
+        } else if (header.tagName === 'H3') {
+            // Find or create a sublist for H3
+            let sublist = currentList.querySelector('ul:last-child');
+            if (!sublist) {
+                sublist = document.createElement('ul');
+                currentList.lastChild?.appendChild(sublist);
+            }
+            sublist.appendChild(listItem);
+        }
+
+        // Add IDs to headers for navigation
         header.id = header.textContent.replace(/\s+/g, '-').toLowerCase();
     });
 });
