@@ -1,7 +1,10 @@
 # Summary of "The Mythical Man-Month" by Fred Brooks
+[Wiki:The Mythical Man-Month](https://en.wikipedia.org/wiki/The_Mythical_Man-Month)
 
 ## Chapter 1: The Tar Pit
 ### The Joys and Woes of Programming
+
+
 ### Complexity in Software Development
 
 ## Chapter 2: The Mythical Man-Month

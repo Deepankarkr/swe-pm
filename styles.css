@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    font-size: small;
     display: flex;
     height: 100vh;
     overflow: hidden;
@@ -66,12 +67,15 @@ body {
 
 #content {
     flex-grow: 1;
-    padding: 20px;
+    padding: 10px;
     overflow-y: auto;
     background: #fff;
 }
 
 #markdown-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    font-size: 19px;
 }
