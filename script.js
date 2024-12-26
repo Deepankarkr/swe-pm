@@ -42,3 +42,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         header.id = header.textContent.replace(/\s+/g, '-').toLowerCase();
     });
 });
+
+
+// Global handler for all link clicks
+document.addEventListener('click', function (event) {
+    // Check if the clicked element is a link
+    if (event.target.tagName === 'A' && event.target.href) {
+        event.preventDefault(); // Prevent the default behavior
+        window.open(event.target.href, '_blank'); // Open in a new tab
+    }
+});
