@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (header.tagName === 'H2') {
             // Add new chapter header
             navigation.appendChild(listItem);
-            const lineBreak = document.createElement('hr');
-            header.insertAdjacentElement('beforebegin', lineBreak);
             parentItem = listItem; // Update parent to the current header
         } else if (header.tagName === 'H3' && parentItem) {
             // Add subheading under the current chapter
